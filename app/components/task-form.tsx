@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../lib/store";
 import { add, edit } from "../lib/features/todos/todoSlice";
+import { generateUniqueId } from "../lib/utils";
 
 type Props = {
   data: {
@@ -31,13 +32,13 @@ const TaskForm = ({ data, onCancel }: Props) => {
     event.stopPropagation();
 
     const task = {
-      id: data?.id,
+      id: data?.id ?  data?.id : generateUniqueId(),
       title,
       description,
     };
 
-    if(data == null){
-      dispatch(add())
+    if(data?.id == null){
+      dispatch(add(task))
     }else{
       dispatch(edit(task));
     }

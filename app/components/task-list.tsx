@@ -46,7 +46,7 @@ const TaskList = ({data, onClick, searchParams}: Props) => {
         className="my-masonry-grid gap-x-2 gap-y-2 pl-9"
       >
         {entries.map((item) => (
-          <div key={item.id} className="pb-2">
+          <div key={item?.id} className="pb-2">
             <Task onSelect={(data) => onClick(data)} data={item} />
           </div>
         ))}

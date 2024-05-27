@@ -18,6 +18,9 @@ type Props = {
 
 const Task = ({ data, onSelect }: Props) => {
   const dispatch = useDispatch<AppDispatch>();
+
+  if(!data) return;
+  
   return (
     <div className="relative group min-h-[120px]  p-2 rounded-xl bg-amber-100 flex flex-col gap-y-1">
       <div className="h-6 flex items-center justify-between">

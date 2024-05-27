@@ -18,13 +18,8 @@ const todoSlice = createSlice({
   name: "todos",
   initialState,
   reducers: {
-    add: (state) => {
-      const task = {
-        id: generateUniqueId(),
-        title: "Title",
-        description: "description",
-      };
-
+    add: (state, action) => {
+      const task = action.payload;
       // let existingTasks = getAllTasks();
 
       state.todos.unshift(task);
