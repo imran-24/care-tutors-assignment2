@@ -1,27 +1,40 @@
-"use client";
+import axios from "axios";
+import BookList from "./components/book-list";
+import { getBooks } from "./actions/get-books";
 
-import { useState } from "react";
-import TaskForm from "./components/task-form";
-import TaskList from "./components/task-list";
-import { useSelector } from "react-redux";
-import { RootState } from "./lib/store";
 
 export type Params = {
-  searchParams: {
-    [key: string]: string | string[] | undefined;
-  },
+  // searchParams: {
+  //   [key: string]: string | string[] | undefined;
+  // },
 }
 
-export default function Home({searchParams}: Params) {
-  const tasks = useSelector((state: RootState) => state.todos.todos);
-  const [edit, setEdit] = useState(null);
+export default async function Home({}: Params) {
 
-  console.log(searchParams)
+  // const booklist = await getBooks();
+  // console.log(booklist);
+  const booklist = [
+    {"name":"Pride and Prejudice","author":"Unknown","price":8.851497568238443,"image_url":"https://source.unsplash.com/random/400x600?book"}
+  ];
+
+//   const response = fetch("http://192.168.0.157:8000/books/");
+//  console.log(response);
+
+
+  // const booklist = async() => {
+  //   'use server'
+  //   const response = await fetch("http://192.168.0.157:8000/books/");
+  //   console.log(response);
+  //   return response;
+  // }
+
+
   return (
-    <div className="flex h-full max-w-5xl w-full mx-auto">
-      <TaskForm onCancel={() => setEdit(null)} data={edit} />
-      <div className="h-full border-l w-1" />
-      <TaskList searchParams={searchParams} data={tasks} onClick={(data: any) => setEdit(data)} />
+    <div className="flex flex-col h-full w-full mx-auto bg-black">
+      <div className="border-b w-full h-20 border-white/20" />
+
+      <BookList booklist={booklist}  />
+
     </div>
   );
 }

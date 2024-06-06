@@ -20,7 +20,6 @@ const todoSlice = createSlice({
   reducers: {
     add: (state, action) => {
       const task = action.payload;
-      // let existingTasks = getAllTasks();
 
       state.todos.unshift(task);
       localStorage.setItem("tasks", JSON.stringify(state.todos));
